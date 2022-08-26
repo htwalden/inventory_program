@@ -53,6 +53,7 @@ while True:
 # initialize the inventory and see original inventory numbers, input reconciled serial
 # numbers and print the report of the reconciliation.
 inventory.get_inventory_stats()
+inventory.validate_data()
 inventory.computers_on_hand()
 inventory.save_progress(saved_progress)
 missing_cpus = inventory.reconcile_inventory()

@@ -4,14 +4,14 @@ from csv import reader
 
 class Inventory:
 
-    def __init__(self, original_inventory, enhanced_inventory, continue_inventory=None, clear_file=None):
-        self.original_inventory = original_inventory  # the serials from the offical records (.txt no header)
+    def __init__(self, official_inventory, enhanced_inventory, continue_inventory=None, clear_file=None):
+        self.official_inventory = official_inventory  # the serials from the official records (.txt no header)
         self.enhanced_inventory = enhanced_inventory  # serials with locations derived from original (.csv with header)
         self.continue_inventory = continue_inventory
         self.clear_file = clear_file
 
         # open and read the original inventory as a set
-        with open(self.original_inventory) as oi:
+        with open(self.official_inventory) as oi:
             self.serials = oi.read().split("\n")
             self.serials = set(self.serials)
             self.total_computers = len(self.serials)
@@ -22,14 +22,15 @@ class Inventory:
             self.locations = list(reader(ei))
             self.locations = self.locations[1:]
             self.locations = {item: location for item, location in self.locations}
+            self.elen = len(self.locations)
             ei.close()
 
-        # combine the ensure the original serials that may not be in enhanced are added
+        # combine to ensure the original serials that may not be in enhanced are added
         for item in self.serials:
             if item not in self.locations:
                 self.locations[item] = "Location Unknown"
 
-                # create a way to load a preexisting inventory job or start a new one
+        # create a way to load a preexisting inventory job or start a new one
         if self.continue_inventory is not None:
             with open(self.continue_inventory) as on_hand:
                 self.computers_found = on_hand.read().split("\n")
@@ -43,6 +44,16 @@ class Inventory:
         # clear the started_inventory if continue_inventory is none
         if self.continue_inventory is None:
             open(self.clear_file).close()
+
+    # validate the length of official vs enhanced data and print delta
+    def validate_data(self):
+        if self.total_computers == len(self.locations):
+            print('Data sets validated...ok')
+        else:
+            print('Data sets validated...error \n'
+                  f'Count in official inventory: {self.total_computers}\n'
+                  f'Count in enhanced inventory: {len(self.locations)}\n'
+                  'Recommend checking data before continuing...')
 
     # check the length of the original inventory, return message to user
     def get_inventory_stats(self):
@@ -100,4 +111,3 @@ class Inventory:
                     f'Missing percentage of total: {missing_percentage}%' '\n''\n'
                     f'The following computers are missing: \n')
             return rpt5
-

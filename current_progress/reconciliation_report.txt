@@ -1,38 +1,9 @@
-Report current as of: 2022-08-26 17:18:53
+Report current as of: 2022-08-26 18:00:05
  -------------------- 
 ***Reconciliation complete:***
 
 There is a total of 2056 in the inventory
 
-Computers found: 2043
+Computers found: 2056
 
-Computers missing: 13
-Missing percentage of total: 1%
-
-The following computers are missing: 
-
-('12AB34XY2044', 'c7')
-
-('12AB34XY2045', 'c7')
-
-('12AB34XY2046', 'c7')
-
-('12AB34XY2047', 'c7')
-
-('12AB34XY2048', 'c7')
-
-('12AB34XY2049', 'c7')
-
-('12AB34XY2050', 'c7')
-
-('12AB34XY2051', 'c7')
-
-('12AB34XY2052', 'c7')
-
-('12AB34XY2053', 'c7')
-
-('12AB34XY2054', 'c7')
-
-('12AB34XY2055', 'c7')
-
-('12AB34XY2056', 'c7')
+All computers accounted for...inventory complete
