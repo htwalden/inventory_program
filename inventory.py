@@ -2,32 +2,18 @@
 import os
 import pathlib
 from configparser import ConfigParser
-
+import pathlib
 from modules import my_inventory
 from modules import file_manager
 
-# read config file
-file_config = ConfigParser()
-file_config.read('config.ini')
+# get relative data folder
+PATH = pathlib.Path(__file__).parent
+official_inventory = PATH.joinpath('./data/official_inventory.txt').resolve()
+enhanced_inventory = PATH.joinpath('./data/enhanced_inventory.csv').resolve()
+saved_progress = PATH.joinpath('./current_progress/started_inventory.txt').resolve()
+save_current_report = PATH.joinpath('./current_progress/reconciliation_report.txt').resolve()
+archive = PATH.joinpath('./record_archive').resolve()
 
-# get config info
-parent_path = file_config.get('FILES', 'parent')
-modules_dir = file_config.get('FILES', 'modules')
-data_dir = file_config.get('FILES', 'data')
-enhanced_inventory_f = file_config.get('FILES', 'enhanced_inventory')
-official_inventory_f = file_config.get('FILES', 'official_inventory')
-current_progress_dir = file_config.get('FILES', 'current_progress')
-reconciliation_report_f = file_config.get('FILES', 'reconciliation_report')
-started_inventory_f = file_config.get('FILES', 'started_inventory')
-record_archive_dir = file_config.get('FILES', 'record_archive')
-
-# define paths to data
-parent = pathlib.Path(parent_path)
-official_inventory = parent.joinpath(data_dir, official_inventory_f)
-enhanced_inventory = parent.joinpath(data_dir, enhanced_inventory_f)
-saved_progress = parent.joinpath(current_progress_dir, started_inventory_f)
-save_current_report = parent.joinpath(current_progress_dir, reconciliation_report_f)
-archive = parent.joinpath(record_archive_dir)
 
 # start a new inventory or continue a previous inventory
 while True:
