@@ -4,4 +4,4 @@ RUN mkdir -p /home/app
 
 COPY . /home/app
 
-CMD ["python", "inventory.py"]
+CMD ["python", "/home/app/inventory.py"]
