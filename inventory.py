@@ -23,17 +23,21 @@ while True:
           'Load previous reconciliation or start new?\n'
           'WARNING: if you select "n", previous reconciliation will be overwritten.\n'
           'SELECT [n/c]')
-    new_or_continuing = input()
-    print('\n')
-    if new_or_continuing == 'n':
-        inventory = my_inventory.Inventory(official_inventory, enhanced_inventory, clear_file=saved_progress)
-        break
-    elif new_or_continuing == 'c':
-        inventory = my_inventory.Inventory(official_inventory, enhanced_inventory, continue_inventory=saved_progress)
-        break
-    else:
-        print("Please type 'n' or 'c'")
-        continue
+    try:
+        new_or_continuing = input()
+        print('\n')
+        if new_or_continuing == 'n':
+            inventory = my_inventory.Inventory(official_inventory, enhanced_inventory, clear_file=saved_progress)
+            break
+        elif new_or_continuing == 'c':
+            inventory = my_inventory.Inventory(official_inventory, enhanced_inventory,
+                                               continue_inventory=saved_progress)
+            break
+        else:
+            print("Please type 'n' or 'c'")
+            continue
+    except EOFError as e:
+        print(e)
 
 # ------------------------------------------------------------------------------------------
 # initialize the inventory and see original inventory numbers, input reconciled serial
