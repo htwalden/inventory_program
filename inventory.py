@@ -36,7 +36,7 @@ while True:
         else:
             print("Please type 'n' or 'c'")
             continue
-    except EOFError as e:
+    except Exception as e:
         print(e)
 
 # ------------------------------------------------------------------------------------------
