@@ -1,8 +1,6 @@
 # my_cmr.py
 import os
 import pathlib
-from configparser import ConfigParser
-import pathlib
 from modules import my_inventory
 from modules import file_manager
 
@@ -23,6 +21,7 @@ print('\n********************************************\n'
       'Load previous reconciliation or start new?\n'
       'WARNING: if you select "n", previous reconciliation will be overwritten.\n'
       'SELECT [n/c]')
+
 while True:
     new_or_continuing = input()
     print('\n')
